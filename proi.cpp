@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #include <locale.h>
 
-int i, x=0, x1=0, x2=0, y=10, vcla[10];
+int i, j, x=0, x1=0, x2=0, y=10, vcla[10];
 float vsal[10];
 
 char nom [20][10]={"Pedro", "Esteban", "Hilda", "Valeria", "Bruno", "Victor", "Silvia", "Jennifer", "Mario", "Julio", "Dalia", "Alondra", "Jonathan", "Octavio", "Melissa", "Andrea", "Axel", "Gabriel", "Samantha", "Karina"};
