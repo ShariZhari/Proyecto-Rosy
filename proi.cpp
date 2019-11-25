@@ -133,7 +133,7 @@ void ordenar(){
 					for(j=0; j<10; j++){
 						if(vcla[i]<vcla[j]){
 						burb(i,j);				
-						}0
+						}
 					}		
 				}	
 				imprimir();
