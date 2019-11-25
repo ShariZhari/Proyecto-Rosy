@@ -8,6 +8,7 @@ char nom [20][10]={"Pedro", "Esteban", "Hilda", "Valeria", "Bruno", "Victor", "S
 char aPat[20][10]={"Domínguez", "Salazar", "Andrade", "Saucedo", "Quiroz", "Serna", "Gutiérrez", "Luna", "Rodríguez", "Jiménez", "Rivera", "Pacheco", "Sierra", "Medrano", "Ortega", "Anaya", "Duran", "Yañez", "Romero", "Quezada"};
 char aMat[20][10]={"Santana", "Arias", "Uribe", "Esquivel", "Solís", "Escobedo", "Chavez", "Rangel", "Esparza", "Herrera", "Zaragoza", "Torres", "Hernández", "Soto", "Medina", "Varela", "Muñoz", "Ortiz", "Lozano", "Medina"};
 char nomcom [10][50];
+void imprimir();
 void menu();
 void ordenar();
 void burb(int k, int l);
@@ -51,11 +52,7 @@ int main()
 	{
 		case 1: {
 			printf("\n  -Mostrar todos los contactos\n\n ");
-			printf("\tClave \t\tNombre del trabajador\t\tSalario\n ");
-			for(i=0; i<10; i++)
-			{
-				printf("\t%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);	
-			}
+			imprimir();
 			printf("\n");			
 			menu();
 		break; 
@@ -198,6 +195,14 @@ void burb(int k, int l){
 	vsal[l]=saltem;	
 	
 	clatem=0; saltem=0; fflush(stdin);
+}
+
+void imprimir(){
+			printf("\tClave \t\tNombre del trabajador\t\tSalario\n ");
+			for(i=0; i<10; i++)	{
+				printf("\t%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);	
+			}
+			printf("\n");
 }
 
 void menu()
