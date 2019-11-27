@@ -215,7 +215,7 @@ void menu()
 
 void borrar (){
 			int o,clave,k,j,p;
-			char nombre[10][50];
+			char nombre[50],elim[]={'\0'};
 for(;;){
 printf("\n Seleccione el parámetro por el que desee borrar el registro:\n ");
 		printf(" 1: Clave del trabajador.\n ");
@@ -239,16 +239,10 @@ printf("\n Seleccione el parámetro por el que desee borrar el registro:\n ");
 			
 			vcla.erase( vcla.begin() + p);
 			vsal.erase( vsal.begin() + p);
-			for (i=0;i<50;i++){
-				nomcom[p][i]='\0';
-			}
-		for (i=0;i<vcla.size();i++){
-			for (k=0;k<50;k++){
-				if (nomcom[i][k]=='\0'){
-				nomcom[i][k]=nomcom[i+1][k];
-			}
-			nomcom[i][k]=nomcom[i+1][k];
-			}
+		strcmp(nomcom[p],elim);
+		
+		for (i=p;i<vcla.size();i++){
+				strcpy(nomcom[i],nomcom[i+1]);
 	
 		}
 	printf("\nNuevo registro\n\n");
@@ -258,43 +252,35 @@ printf("\n Seleccione el parámetro por el que desee borrar el registro:\n ");
 	break;
 			
 			}		
-	/*case 2:{
-		for(i=0; i<10; i++)
-			{
-				printf("\t%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);	
-			}
-				printf("\n");		
+	case 2:{
+		printf("Actual registro\n\n");
+		imprimir();
 		printf("Introduce el nombre del trabajador\n");
-		//gets(nombre2);
-		for (i=0;i<10;i++){
-		for (k=0;k<50;k++){
-		
-		if (strcmp(nombre,nomcom[i][k])==0)
+		getchar();
+		gets(nombre);
+		for (i=0;i<vcla.size();i++){
+
+		if(strcmp(nomcom[i],nombre)==0){
 			p=i;
-			
 		}
 			
 		}
 			
 			vcla.erase( vcla.begin() + p);
 			vsal.erase( vsal.begin() + p);
-			for (i=0;i<50;i++){
-				nomcom[p][i]='\0';
-			}
-		for (i=0;i<vcla.size();i++){
-			for (k=0;k<50;k++){
-				if (nomcom[i][k]=='\0'){
-				nomcom[i][k]=nomcom[i+1][k];
-			}
-			}
+			strcmp(nomcom[p],elim);
+		
+		for (i=p;i<vcla.size();i++){
+				strcpy(nomcom[i],nomcom[i+1]);
 	
 		}
+	printf("\nNuevo registro\n\n");
 	imprimir();
 	printf("\n");	
 	menu();		
 	break;
 		
-	}*/
+	}
 		case 3:
 			{
 			return;
@@ -313,9 +299,11 @@ printf("\n Seleccione el parámetro por el que desee borrar el registro:\n ");
 			
 }
 void imprimir(){
-		printf("\tClave \t\tNombre del trabajador\t\tSalario\n ");
+
+		printf("\tCLAVE \t\tNOMBRE DEL TRABAJADOR\t\tSALARIO\n");
 				for(i=0; i<vcla.size(); i++)
 			{
+				strupr(nomcom[i]);
 				if (vcla[i]<10){
 					printf("\t000%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);
 				}
@@ -358,7 +346,7 @@ void modificar(){
 						scanf("%d",&ncla);
 					}
 				
-				for (i=0;i<10;i++){
+				for (i=0;i<vcla.size();i++){
 					if(clave==vcla[i])
 					{
 						vcla[i]=ncla;
@@ -374,16 +362,17 @@ void modificar(){
 				printf(" Modificar nombre del trabajador.\n\n ");
 				imprimir();	
 				printf("¿Cuál nombre quieres modificar?\n");
+				getchar();
 				gets(nombre);
 				printf("Dame el nuevo nombre\n");
+				getchar();
 				gets(nnom);
-				/*for (i=0;i<10;i++){
-					//n2=nomcom[i][50];
-					if(strcmp(nombre,nomcom[i][k])==0)
+				for (i=0;i<vcla.size();i++){
+					if(strcmp(nomcom[i],nombre)==0)
 					{
-						strcpy(nomcom[i][k],nnom);
+						strcpy(nomcom[i],nnom);
 					}
-				}*/
+				}
 				imprimir();			
 				menu();				
 				break;
@@ -395,7 +384,7 @@ void modificar(){
 				scanf("%f",&sal);
 				printf("Dame el nuevo salario\nEn caso de agregar decimales usar coma(,)\n");
 				scanf("%f",&nsal);
-				for (i=0;i<10;i++){
+				for (i=0;i<vcla.size();i++){
 					if(vsal[i]==sal)
 					{
 						vsal[i]=nsal;
@@ -417,5 +406,4 @@ void modificar(){
 	}				
 			
 }
-
 
