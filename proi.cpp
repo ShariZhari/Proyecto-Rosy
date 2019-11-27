@@ -238,7 +238,7 @@ printf("\n Seleccione el parámetro por el que desee borrar el registro:\n ");
 			
 			vcla.erase( vcla.begin() + p);
 			vsal.erase( vsal.begin() + p);
-			strcmp(nomcom[p],elim);
+			strcpy(nomcom[p],elim);
 		
 		for (i=p;i<vcla.size();i++){
 				strcpy(nomcom[i],nomcom[i+1]);
@@ -268,7 +268,7 @@ printf("\n Seleccione el parámetro por el que desee borrar el registro:\n ");
 			
 			vcla.erase( vcla.begin() + p);
 			vsal.erase( vsal.begin() + p);
-			strcmp(nomcom[p],elim);
+			strcpy(nomcom[p],elim);
 		
 		for (i=p;i<vcla.size();i++){
 				strcpy(nomcom[i],nomcom[i+1]);
