@@ -1,17 +1,24 @@
 #include <bits/stdc++.h>
 #include <locale.h>
 
-int i, j, x=0, x1=0, x2=0, y=10, vcla[10];
-float vsal[10];
+using namespace std;
+vector<int> vcla(10);
+vector<float> vsal(10);
+int i, x=0, x1=0, x2=0, y=10,j;
+
+//float vsal[10];
 
 char nom [20][10]={"Pedro", "Esteban", "Hilda", "Valeria", "Bruno", "Victor", "Silvia", "Jennifer", "Mario", "Julio", "Dalia", "Alondra", "Jonathan", "Octavio", "Melissa", "Andrea", "Axel", "Gabriel", "Samantha", "Karina"};
 char aPat[20][10]={"Domínguez", "Salazar", "Andrade", "Saucedo", "Quiroz", "Serna", "Gutiérrez", "Luna", "Rodríguez", "Jiménez", "Rivera", "Pacheco", "Sierra", "Medrano", "Ortega", "Anaya", "Duran", "Yañez", "Romero", "Quezada"};
 char aMat[20][10]={"Santana", "Arias", "Uribe", "Esquivel", "Solís", "Escobedo", "Chavez", "Rangel", "Esparza", "Herrera", "Zaragoza", "Torres", "Hernández", "Soto", "Medina", "Varela", "Muñoz", "Ortiz", "Lozano", "Medina"};
-char nomcom [10][50];
-void imprimir();
+char nomcom [10][50],nombre[50];
 void menu();
-void ordenar();
+void borrar();
+void imprimir();
+void modificar();
 void burb(int k, int l);
+void ordenar();
+
 
 
 int main()
@@ -53,7 +60,7 @@ int main()
 		case 1: {
 			printf("\n  -Mostrar todos los contactos\n\n ");
 			imprimir();
-			printf("\n");			
+			printf("\n");
 			menu();
 		break; 
 		}
@@ -68,7 +75,8 @@ int main()
 		}
 		
 		case 3: {
-			printf("\n  -Ordenar alfabéticamente\n\n ");
+			printf("\n  -Ordenar alfabéticamente\n\n ");	
+			menu();
 			ordenar();	
 		break; 
 		}
@@ -79,15 +87,16 @@ int main()
 		break; 
 		}
 		
-		case 5: {
-			printf("\n  -Eliminar un registro\n\n ");	
-			menu();
+		case 5: {//borrar por nombre
+		printf("\n  -Eliminar un registro\n\n ");
+		 borrar();
 		break; 
 		}
 		
-		case 6: {
-				
-			printf("\n  -Modificar clave, nombre o salario de un trabajador\n\n ");	
+		case 6: {//cambiar nombre 
+	
+		printf("\n  -Modificar clave, nombre o salario de un trabajador\n\n ");	
+			modificar();
 			menu();			
 		break; 
 		}
@@ -114,7 +123,6 @@ int main()
 	getchar();
 	return 0;
 }
-
 void ordenar(){
 
 	for (;;){		
@@ -197,14 +205,6 @@ void burb(int k, int l){
 	clatem=0; saltem=0; fflush(stdin);
 }
 
-void imprimir(){
-			printf("\tClave \t\tNombre del trabajador\t\tSalario\n ");
-			for(i=0; i<10; i++)	{
-				printf("\t%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);	
-			}
-			printf("\n");
-}
-
 void menu()
 {
 	printf("\n Presione cualquier tecla para regresar al menu anterior\n");
@@ -212,4 +212,210 @@ void menu()
     getchar();
     system("cls");
 }
+
+void borrar (){
+			int o,clave,k,j,p;
+			char nombre[10][50];
+for(;;){
+printf("\n Seleccione el parámetro por el que desee borrar el registro:\n ");
+		printf(" 1: Clave del trabajador.\n ");
+		printf(" 2: Nombre del trabajador.\n ");
+		printf(" 3: Regresar al menú anterior.\n ");
+	scanf("%d",&o);
+	system("cls");
+
+		switch(o){
+			case 1:{
+		printf("Actual registro\n\n");
+		imprimir();
+		printf("Introduce la clave del trabajador\n");
+		scanf("%d",&clave);
+		
+		for (i=0;i<vcla.size();i++){
+			if (clave==vcla[i])
+			p=i;
+			
+		}
+			
+			vcla.erase( vcla.begin() + p);
+			vsal.erase( vsal.begin() + p);
+			for (i=0;i<50;i++){
+				nomcom[p][i]='\0';
+			}
+		for (i=0;i<vcla.size();i++){
+			for (k=0;k<50;k++){
+				if (nomcom[i][k]=='\0'){
+				nomcom[i][k]=nomcom[i+1][k];
+			}
+			nomcom[i][k]=nomcom[i+1][k];
+			}
+	
+		}
+	printf("\nNuevo registro\n\n");
+	imprimir();
+	printf("\n");	
+	menu();	
+	break;
+			
+			}		
+	/*case 2:{
+		for(i=0; i<10; i++)
+			{
+				printf("\t%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);	
+			}
+				printf("\n");		
+		printf("Introduce el nombre del trabajador\n");
+		//gets(nombre2);
+		for (i=0;i<10;i++){
+		for (k=0;k<50;k++){
+		
+		if (strcmp(nombre,nomcom[i][k])==0)
+			p=i;
+			
+		}
+			
+		}
+			
+			vcla.erase( vcla.begin() + p);
+			vsal.erase( vsal.begin() + p);
+			for (i=0;i<50;i++){
+				nomcom[p][i]='\0';
+			}
+		for (i=0;i<vcla.size();i++){
+			for (k=0;k<50;k++){
+				if (nomcom[i][k]=='\0'){
+				nomcom[i][k]=nomcom[i+1][k];
+			}
+			}
+	
+		}
+	imprimir();
+	printf("\n");	
+	menu();		
+	break;
+		
+	}*/
+		case 3:
+			{
+			return;
+			break;
+			}	
+		default:{
+			printf(" \n Elija una opción válida.\n\n ");	
+			
+		}	
+		
+			
+		}
+		
+	}
+	
+			
+}
+void imprimir(){
+		printf("\tClave \t\tNombre del trabajador\t\tSalario\n ");
+				for(i=0; i<vcla.size(); i++)
+			{
+				if (vcla[i]<10){
+					printf("\t000%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);
+				}
+					else if (vcla[i]<100){
+					printf("\t00%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);
+				}
+					else if (vcla[i]<1000){
+					printf("\t0%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);
+				}
+				else {
+					printf("\t%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);	
+				}
+				
+			}
+			printf("\n");
+}
+void modificar(){
+				int ncla,clave,mod,i;
+				float nsal,sal;
+				char nombre[50],nnom[50],n2;
+			for (;;){		
+		printf("\n Seleccione el parámetro por el que desee modificar el registro:\n ");
+		printf(" 1: Clave del trabajador.\n ");
+		printf(" 2: Nombre del trabajador.\n ");
+		printf(" 3: Salario del trabajador.\n ");
+		printf(" 4: Regresar al menú anterior.\n ");
+		scanf("%d", &mod);
+		system("cls");
+		switch(mod){
+			case 1: {
+				printf(" Modificar clave del trabajador.\n\n ");
+				imprimir();
+				printf("¿Cuál clave quieres modificar?\n");
+				scanf("%d",&clave);
+				printf("Dame la nueva clave\n");
+				scanf("%d",&ncla);
+				while (ncla>10000||ncla<0){
+						printf("Clave no válida.Intente de nuevo\n");										
+						printf("\nDame la nueva clave\n");
+						scanf("%d",&ncla);
+					}
+				
+				for (i=0;i<10;i++){
+					if(clave==vcla[i])
+					{
+						vcla[i]=ncla;
+					}
+				}
+					
+				imprimir();
+				printf("\n");	
+				menu();
+				break;
+			}
+			case 2: {
+				printf(" Modificar nombre del trabajador.\n\n ");
+				imprimir();	
+				printf("¿Cuál nombre quieres modificar?\n");
+				gets(nombre);
+				printf("Dame el nuevo nombre\n");
+				gets(nnom);
+				/*for (i=0;i<10;i++){
+					//n2=nomcom[i][50];
+					if(strcmp(nombre,nomcom[i][k])==0)
+					{
+						strcpy(nomcom[i][k],nnom);
+					}
+				}*/
+				imprimir();			
+				menu();				
+				break;
+			} 
+			case 3: {
+				printf(" Modificar salario del trabajador.\n\n ");
+				imprimir();
+				printf("¿Cuál salario quieres modificar?\nEn caso de agregar decimales usar coma(,)\n");
+				scanf("%f",&sal);
+				printf("Dame el nuevo salario\nEn caso de agregar decimales usar coma(,)\n");
+				scanf("%f",&nsal);
+				for (i=0;i<10;i++){
+					if(vsal[i]==sal)
+					{
+						vsal[i]=nsal;
+					}
+				}
+				imprimir();
+				printf("\n");				
+				menu();		
+				break;
+			} 
+			case 4: {		
+				return;
+				break;
+			}
+			default:{
+			printf(" \n Elija una opción válida.\n\n ");			
+			}
+		}
+	}				
+			
+}
+
 
