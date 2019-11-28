@@ -20,7 +20,7 @@ void buscar();
 void burb(int k, int l);
 void ordenar();
 int verfClav();
-
+int verfNom();
 
 
 int main()
@@ -257,16 +257,8 @@ printf("\n Seleccione el parámetro por el que desee borrar el registro:\n ");
 		printf("Actual registro\n\n");
 		imprimir();
 		printf("Introduce el nombre del trabajador. Recuerde de poner todo el nombre en mayúsculas\n");
-		getchar();
-		gets(nombre);
-		for (i=0;i<vcla.size();i++){
-
-		if(strcmp(nomcom[i],nombre)==0){
-			p=i;
-		}
-			
-		}
-			
+		p=verfNom();
+	
 			vcla.erase( vcla.begin() + p);
 			vsal.erase( vsal.begin() + p);
 			strcpy(nomcom[p],elim);
@@ -511,4 +503,27 @@ int verfClav(){
 			}
 		}
 
+	
+int verfNom(){
+	int z=0, yes=0;
+	char nu[50];
+	for(;;){
+		
+		getchar();
+		gets(nu);
+		for (i=0;i<vcla.size();i++){
+			if (strcmp(nomcom[i],nu)==0){
+			yes=1;
+			z=i;		
+			} 
+		}
+		if(yes!=1){
+			printf("\nNombre no encontrado, intente de nuevo\n");
+				printf("Introduce un espacio, seguido del nombre del trabajador\n");
+		}	else{
+				return(z);
+				break;
+				}
+			}
+		}
 
