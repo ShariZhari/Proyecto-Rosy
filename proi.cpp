@@ -19,6 +19,7 @@ void modificar();
 void buscar();
 void burb(int k, int l);
 void ordenar();
+int verfClav();
 
 
 
@@ -228,7 +229,7 @@ printf("\n Seleccione el parámetro por el que desee borrar el registro:\n ");
 		printf("Actual registro\n\n");
 		imprimir();
 		printf("Introduce la clave del trabajador\n");
-		scanf("%d",&clave);
+		clave=verfClav();
 		
 		for (i=0;i<vcla.size();i++){
 			if (clave==vcla[i])
@@ -336,7 +337,7 @@ void modificar(){
 				printf(" Modificar clave del trabajador.\n\n ");
 				imprimir();
 				printf("¿Cuál clave quieres modificar?\n");
-				scanf("%d",&clave);
+				clave=verfClav();
 				printf("Dame la nueva clave\n");
 				scanf("%d",&ncla);
 				while (ncla>10000||ncla<0){
@@ -490,5 +491,24 @@ void buscar(){
 	
 }
 
+int verfClav(){
+	int z=0, yes=0;
+	for(;;){
+		
+		scanf("%d",&z);
+		for (i=0;i<vcla.size();i++){
+			if (z==vcla[i]){
+			yes=1;		
+			} 
+		}
+		if(yes!=1){
+			printf("\nClave no encontrada, intente de nuevo\n");
+				printf("Introduce la clave del trabajador\n");
+		}	else{
+				return(z);
+				break;
+				}
+			}
+		}
 
 
