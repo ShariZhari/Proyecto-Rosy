@@ -1,10 +1,12 @@
 #include <bits/stdc++.h>
 #include <locale.h>
 
+
+
 using namespace std;
 vector<int> vcla(10);
 vector<float> vsal(10);
-int i, x=0, x1=0, x2=0, y=10,j;
+int i, x=0, x1=0, x2=0, y=10,j, z=10;
 
 //float vsal[10];
 
@@ -33,7 +35,7 @@ int main()
 	for(i=0; i<10; i++)
 	{		
 		vcla[i]=rand()%9000+1000;
-		vsal[i]=(float)rand()/10000*1000;
+		vsal[i]=rand()%9000+1000;
 		x=rand()%20;
  		x1=rand()%20;
   		x2=rand()%20;
@@ -236,14 +238,14 @@ printf("\n Seleccione el parámetro por el que desee borrar el registro:\n ");
 			p=i;
 			
 		}
-			
-			vcla.erase( vcla.begin() + p);
-			vsal.erase( vsal.begin() + p);
+			vcla[p]=0;
+			vsal[p]=0;
 			strcpy(nomcom[p],elim);
-		
-		for (i=p;i<vcla.size();i++){
+		z--;
+		for (i=p;i<z;i++){
 				strcpy(nomcom[i],nomcom[i+1]);
-	
+				vcla[i]=vcla[i+1];
+				vsal[i]=vsal[i+1];
 		}
 	
 	printf("\nNuevo registro\n\n");
@@ -293,7 +295,7 @@ printf("\n Seleccione el parámetro por el que desee borrar el registro:\n ");
 }
 void imprimir(){
 		printf("\tClave \t\tNombre del trabajador\t\tSalario\n ");
-				for(i=0; i<vcla.size(); i++)
+				for(i=0; i<z; i++)
 			{
 				strupr(nomcom[i]);
 				if (vcla[i]<10){
