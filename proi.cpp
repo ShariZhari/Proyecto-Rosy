@@ -9,8 +9,8 @@ int i, x=0, x1=0, x2=0, y=10,j;
 //float vsal[10];
 
 char nom [20][10]={"Pedro", "Esteban", "Hilda", "Valeria", "Bruno", "Victor", "Silvia", "Jennifer", "Mario", "Julio", "Dalia", "Alondra", "Jonathan", "Octavio", "Melissa", "Andrea", "Axel", "Gabriel", "Samantha", "Karina"};
-char aPat[20][10]={"Domínguez", "Salazar", "Andrade", "Saucedo", "Quiroz", "Serna", "Gutiérrez", "Luna", "Rodríguez", "Jiménez", "Rivera", "Pacheco", "Sierra", "Medrano", "Ortega", "Anaya", "Duran", "Yañez", "Romero", "Quezada"};
-char aMat[20][10]={"Santana", "Arias", "Uribe", "Esquivel", "Solís", "Escobedo", "Chavez", "Rangel", "Esparza", "Herrera", "Zaragoza", "Torres", "Hernández", "Soto", "Medina", "Varela", "Muñoz", "Ortiz", "Lozano", "Medina"};
+char aPat[20][10]={"Dominguez", "Salazar", "Andrade", "Saucedo", "Quiroz", "Serna", "Gutierrez", "Luna", "Rodriguez", "Jimenez", "Rivera", "Pacheco", "Sierra", "Medrano", "Ortega", "Anaya", "Duran", "Nava", "Romero", "Quezada"};
+char aMat[20][10]={"Santana", "Arias", "Uribe", "Esquivel", "Solis", "Escobedo", "Chavez", "Rangel", "Esparza", "Herrera", "Zaragoza", "Torres", "Hernandez", "Soto", "Medina", "Varela", "Reyes", "Ortiz", "Lozano", "Medina"};
 char nomcom [10][50],nombre[50];
 void menu();
 void borrar();
