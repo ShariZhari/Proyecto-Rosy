@@ -76,8 +76,8 @@ int main()
 		
 		case 3: {
 			printf("\n  -Ordenar alfabéticamente\n\n ");	
-			menu();
-			ordenar();	
+			ordenar();
+			menu();	
 		break; 
 		}
 		
