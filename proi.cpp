@@ -354,11 +354,12 @@ void modificar(){
 				printf(" Modificar nombre del trabajador.\n\n ");
 				imprimir();	
 				printf("¿Cuál nombre quieres modificar? Recuerde de poner todo el nombre en mayúsculas\n");
-				getchar();
-				gets(nombre);
+				scanf("%[^\n]%*c", nombre);
 				printf("Dame el nuevo nombre\n");
-				getchar();
-				gets(nnom);
+				//getchar();
+				//gets(nnom);
+				scanf("%[^\n]%*c", nnom);
+				printf("%s\n",nnom);
 				for (i=0;i<vcla.size();i++){
 					if(strcmp(nomcom[i],nombre)==0)
 					{
@@ -526,4 +527,3 @@ int verfNom(){
 				}
 			}
 		}
-
