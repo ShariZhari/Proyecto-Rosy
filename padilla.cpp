@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <locale.h>
+using namespace std;
 
 int x=0, y=0;
 
@@ -10,6 +11,7 @@ int vecmay[50];
 void bin();
 void oct();
 void may();
+void matrixtl();
 void menu();
 
 int main()
@@ -18,12 +20,12 @@ int main()
 	int op, men=1, nu=1; 
 	while (men==1)
 	{
-	printf("\n * MENÚ *\n\n");
-	printf(" Seleccione la opción que desee ejecutar:\n ");
+	printf("\n * MENÃš *\n\n");
+	printf(" Seleccione la opciÃ³n que desee ejecutar:\n ");
 	printf(" 1: Conversiones de decimal a binario, octal o maya.\n ");
 	printf(" 2: Matrices de aydacencia e incidencia.\n ");
-	printf(" 3: Lógica de proposiciones.\n ");
-	printf(" 4: Lógica de predicados.\n ");
+	printf(" 3: LÃ³gica de proposiciones.\n ");
+	printf(" 4: LÃ³gica de predicados.\n ");
 	printf(" 5: \n ");
 	printf(" 6: \n ");
 	printf(" 7: Salir\n  ");
@@ -35,7 +37,7 @@ int main()
 		case 1: {
 			printf("\n  -Conversiones de decimal a binario, octal o maya\n\n ");
 			while(nu==1){
-			printf("\n Selecciona la base a la que deseas convertir tu número decimal:\n ");
+			printf("\n Selecciona la base a la que deseas convertir tu nÃºmero decimal:\n ");
 			printf(" 1: Binario.\n ");
 			printf(" 2: Octal.\n ");
 			printf(" 3: Maya.\n ");
@@ -67,7 +69,7 @@ int main()
 			}
 			default:{
 			system("cls");
-			printf(" \n Elige una opción válida.\n\n ");			
+			printf(" \n Elige una opciÃ³n vÃ¡lida.\n\n ");			
 			}			
 		}			
 		}
@@ -77,19 +79,20 @@ int main()
 		
 		case 2: {
 			printf("\n  -Matrices de aydacencia e incidencia\n\n ");
+			matrixtl();
 			menu();
 						
 		break; 
 		}
 		
 		case 3: {
-			printf("\n  -Lógica de proposiciones\n\n ");
+			printf("\n  -LÃ³gica de proposiciones\n\n ");
 			menu();	
 		break; 
 		}
 		
 		case 4: {
-			printf("\n  -Lógica de predicados\n\n ");				
+			printf("\n  -LÃ³gica de predicados\n\n ");				
 			menu();
 		break; 
 		}
@@ -130,7 +133,7 @@ int main()
 
 void bin() {
 	int cnt=0;
-	printf("\n  -Conversión de decimal a binario\n\n ");
+	printf("\n  -ConversiÃ³n de decimal a binario\n\n ");
 	printf(" Ingresa el numero entero decimal que quieres convertir: ");
 	scanf("%d", &x);
 	
@@ -155,7 +158,7 @@ void bin() {
 
 
 void oct(){
-	printf("\n  -Conversión de decimal a octal\n\n ");
+	printf("\n  -ConversiÃ³n de decimal a octal\n\n ");
 	int cnt=0;	
 	printf(" Ingresa el numero entero decimal que quieres convertir: ");
 	scanf("%d", &x);
@@ -182,7 +185,7 @@ void oct(){
 
 void may(){
 	int cnt=0;
-	printf("\n  -Conversión de decimal a maya\n\n ");
+	printf("\n  -ConversiÃ³n de decimal a maya\n\n ");
 	printf(" Ingresa el numero entero decimal que quieres convertir: ");
 	scanf("%d", &x);
 	while (x>=1){
@@ -328,6 +331,84 @@ void may(){
 				}	
 	}
 	printf ("\n");
+}
+
+void matrixtl() {
+
+    //Pedir el volumen de datos
+    int edges=0, nodes=0;
+    printf("Ingresa el numero de nodos: ");
+    scanf("%i", &nodes);
+    printf("Ingresa el numero de aristas: ");
+    scanf("%i", &edges);
+
+    //Inicializar las matrices de incidencia y de adyacencia en ceros
+    int** i_matrix = new int* [nodes];
+    int** a_matrix = new int* [nodes];
+    for (int i = 0; i < nodes; i++) {
+        i_matrix[i] = new int[edges];
+        a_matrix[i] = new int[nodes];
+        for (int j = 0; j < edges; j++)
+            i_matrix[i][j] = 0;
+        for (int k = 0; k < nodes; k++)
+            a_matrix[i][k] = 0;
+    }
+    
+    //Pedir y almacenar las relaciones entre los nodos del grafo
+    int counter=0;
+    printf("Ingresa las relaciones con el formato [nodo1-nodo2].\n");
+    while (counter < edges) {
+        int node1, node2;
+        while (true) {
+            printf("Arista %c: ", char(counter + 97));
+            scanf("%i-%i", &node1, &node2);
+            node1--; node2--;
+            if ((node1<0 || node1>=nodes) || (node2<0 || node2>=nodes))
+                printf("*Nodo no valido, intenta otra vez.\n");
+            else break;
+        }
+        i_matrix[node1][counter] += 1;
+        i_matrix[node2][counter] += 1;
+        a_matrix[node1][node2] += 1;
+        a_matrix[node2][node1] += 1;
+        counter++;
+    }
+
+    //Imprimir ambas matrices
+    printf("\nMatriz de Incidencia\n      ");
+    for (int i = 0; i < edges; i++)
+        printf("%c ", char(i + 97));
+    for (int i = 0; i < nodes; i++) {
+        printf("\n %.2i | ", i + 1);
+        int sum = 0;
+        for (int j = 0; j < edges; j++) {
+            int val = i_matrix[i][j];
+            printf("%i ", val);
+            sum += val;
+        } printf("= %i", sum);
+    } printf("\n\n");
+
+    printf("\nMatriz de Adyacencia\n      ");
+    for (int i = 0; i < nodes; i++)
+        printf("%.2i ", i + 1);
+    for (int i = 0; i < nodes; i++) {
+        printf("\n %.2i | ", i + 1);
+        int sum = 0;
+        for (int j = 0; j < nodes; j++) {
+            int val = a_matrix[i][j];
+            printf(" %i ", val);
+            sum += val;
+        } printf("= %i", sum);
+    } printf("\n\n");
+
+    //Liberar las matrices de memoria 
+    for (int i = 0; i < nodes; i++) {
+        delete[] a_matrix[i];
+        delete[] i_matrix[i];
+    }
+    delete[] a_matrix;
+    delete[] i_matrix;
+
 }
 
 void menu()
