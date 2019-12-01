@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #include <locale.h>
 
+
 using namespace std;
 int i, j, x=0, x1=0, x2=0, y=10, z=10, vcla[10];
 float vsal[10];
@@ -15,6 +16,7 @@ void modificar();
 void buscar();
 void burb(int k, int l);
 void ordenar();
+void ingresar();
 int verfClav();
 int verfNom();
 float verfSal();
@@ -93,11 +95,12 @@ int main()
 		
 		case 4: {
 			printf("\n  -Insertar nuevos registros\n\n ");				
+			ingresar();
 			menu();
 		break; 
 		}
 		
-		case 5: {//borrar por nombre
+		case 5: {
 			printf("\n  -Eliminar un registro\n\n ");
 			if(z==0){
 			printf("\n  No existen registros disponibles para eliminar, por favor ingrese más registros\n\n ");
@@ -108,7 +111,7 @@ int main()
 		break; 
 		}
 		
-		case 6: {//cambiar nombre 
+		case 6: {
 	
 		printf("\n  -Modificar clave, nombre o salario de un trabajador\n\n ");	
 			if(z==0){
@@ -283,6 +286,32 @@ void ordenar(){
 			}
 		}
 	}				
+}
+void ingresar (){
+	char nvnom[50];
+if(z<10){
+	z++;
+	printf("Ingrese el nombre del nuevo trabajador. Recuerde de no utilizar acentos\n");
+	fflush (stdin);
+	gets(nomcom[z]);
+	
+	printf("Ingrese la clave del nuevo trabajador\n");
+	scanf("%d",&vcla[z]);
+	printf("Ingrese el salario del nuevo trabajador\n");
+	scanf("%f",&vsal[z]);
+	z++;
+	imprimir();
+}
+
+	
+	else {
+		printf("El número de trabajadores está en su máximo\n");
+	}
+
+	
+
+	
+	
 }
 
 void burb(int k, int l){
