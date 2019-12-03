@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <locale.h>
+#include <windows.h>
 using namespace std;
 
 int x=0, y=0;
@@ -13,7 +14,8 @@ void oct();
 void may();
 void matrixtl();
 void menu();
-
+void lpro();
+void gotoxy(int x,int y);
 int main()
 {	
 	setlocale(LC_ALL, "spanish");
@@ -87,6 +89,7 @@ int main()
 		
 		case 3: {
 			printf("\n  -Lógica de proposiciones\n\n ");
+			lpro();
 			menu();	
 		break; 
 		}
@@ -129,7 +132,57 @@ int main()
 	getchar();
 	return 0;
 }
-
+ void gotoxy(int x,int y){  
+      HANDLE hcon;  
+      hcon = GetStdHandle(STD_OUTPUT_HANDLE);  
+      COORD dwPos;  
+      dwPos.X = x;  
+      dwPos.Y= y;  
+      SetConsoleCursorPosition(hcon,dwPos);  
+ }  
+void lpro(){
+	int o,i,j;
+	do {
+		printf("Elige una de las siguientes opciones:\n");
+		printf("1.Conjuncion\n");
+		printf("2.Disyunción\n");
+		printf("3.Condicional\n");
+		printf("4.Bicondicional\n");
+		printf("5.Regresar al menú anterior\n");
+		scanf("%d",&o);
+		system("cls");
+		switch(o){
+			case 1:{
+				printf("Conjunción\n\n");
+				printf("Sean:\n");
+				printf("p=Está lloviendo\n");
+				printf("q=Hace calor\n");
+				printf("r=p^q\n");
+				printf("r=Está lloviendo y hace calor\n");
+				printf("\nLa tabla de verdad es:\n");
+				gotoxy(1,10);
+				printf("p\tq\tr");
+				gotoxy(1,12);
+				printf("1\t1\t1");
+				gotoxy(1,14);
+				printf("1\t0\t0");
+				gotoxy(1,16);
+				printf("0\t1\t0");
+				gotoxy(1,18);
+				printf("0\t0\t0");
+				menu();
+				break;
+			}
+			case 2:{
+				
+				break;
+			}
+				
+		}
+	}
+	while(o!=5);
+	
+}
 
 void bin() {
 	int cnt=0;
