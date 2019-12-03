@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include <locale.h>
-
+#include<windows.h>
 
 using namespace std;
 int i, j, x=0, x1=0, x2=0, y=10, z=10, vcla[10];
@@ -20,6 +20,7 @@ void ingresar();
 int verfClav();
 int verfNom();
 float verfSal();
+void gotoxy(int x,int y);
 
 
 int main()
@@ -503,23 +504,45 @@ void modificar(){
 }
 
 void imprimir(){
-		printf("\tClave \t\tNombre del trabajador\t\tSalario\n ");
+	int y=4,x=1;
+		printf("\tClave \t\tNombre del trabajador\t\t\tSalario");
 				for(i=0; i<z; i++)
 			{
 				strupr(nomcom[i]);
 				if (vcla[i]<10){
-					printf("\t000%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);
+					gotoxy(2,y);
+					printf("\t000%d\n",vcla[i]);
+					gotoxy(24,y);
+					printf("%s\n",nomcom[i]);
+					gotoxy(64,y);
+					printf("%.2f\n",vsal[i]);
+					
 				}
 					else if (vcla[i]<100){
-					printf("\t00%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);
+					gotoxy(2,y);
+					printf("\t00%d\n",vcla[i]);
+					gotoxy(24,y);
+					printf("%s\n",nomcom[i]);
+					gotoxy(64,y);
+					printf("%.2f\n",vsal[i]);
 				}
 					else if (vcla[i]<1000){
-					printf("\t0%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);
+					gotoxy(2,y);
+					printf("\t0%d\n",vcla[i]);
+					gotoxy(24,y);
+					printf("%s\n",nomcom[i]);
+					gotoxy(64,y);
+					printf("%.2f\n",vsal[i]);
 				}
 				else {
-					printf("\t%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);	
+					gotoxy(2,y);
+					printf("\t%d\n",vcla[i]);
+					gotoxy(24,y);
+					printf("%s\n",nomcom[i]);
+					gotoxy(64,y);
+					printf("%.2f\n",vsal[i]);	
 				}
-				
+				y++;
 			}
 		printf("\n");
 }
@@ -567,7 +590,14 @@ int verfNom(){
 				}
 			}
 }
-
+ void gotoxy(int x,int y){  
+      HANDLE hcon;  
+      hcon = GetStdHandle(STD_OUTPUT_HANDLE);  
+      COORD dwPos;  
+      dwPos.X = x;  
+      dwPos.Y= y;  
+      SetConsoleCursorPosition(hcon,dwPos);  
+ }  
 float verfSal(){
 	int yes=0;
 	float v=0;
