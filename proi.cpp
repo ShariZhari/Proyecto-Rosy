@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #include <locale.h>
-#include<windows.h>
+
 
 using namespace std;
 int i, j, x=0, x1=0, x2=0, y=10, z=10, vcla[10];
@@ -18,9 +18,10 @@ void burb(int k, int l);
 void ordenar();
 void ingresar();
 int verfClav();
+int noRCla();
 int verfNom();
+void noRNom(int va, int fu);
 float verfSal();
-void gotoxy(int x,int y);
 
 
 int main()
@@ -289,30 +290,27 @@ void ordenar(){
 	}				
 }
 void ingresar (){
-	char nvnom[50];
+	int tc, tif=4;
 if(z<10){
-	z++;
+
 	printf("Ingrese el nombre del nuevo trabajador. Recuerde de no utilizar acentos\n");
-	fflush (stdin);
-	gets(nomcom[z]);
-	
-	printf("Ingrese la clave del nuevo trabajador\n");
-	scanf("%d",&vcla[z]);
-	printf("Ingrese el salario del nuevo trabajador\n");
+	getchar();
+	noRNom(z, tif); //esta función revisa que el nombre que se vaya a ingresar no esté repetido con otro del registro
+	printf("Ingrese la clave del nuevo trabajador. Recuerde usar números positivos de hasta 4 dígitos\n");
+	vcla[z]=noRCla();		
+	printf("Ingrese el salario del nuevo trabajador. Recuerde usar números positivos\n");
 	scanf("%f",&vsal[z]);
+		while (vsal[z]<0){
+						printf("Salario no válido.Intente de nuevo\n");										
+						printf("\nIngrese el salario del nuevo trabajador\n");
+						scanf("%f",&vsal[z]);
+					}
 	z++;
 	imprimir();
 }
-
-	
 	else {
 		printf("El número de trabajadores está en su máximo\n");
-	}
-
-	
-
-	
-	
+	}	
 }
 
 void burb(int k, int l){
@@ -420,7 +418,7 @@ printf("\n Seleccione el parámetro por el que desee borrar el registro:\n ");
 }
 
 void modificar(){
-				int ncla,clave,mod,p=0;
+				int ncla,clave,mod,p=0, tpf=6;
 				float nsal,sal;
 				char nnom[50];
 			for (;;){		
@@ -437,14 +435,8 @@ void modificar(){
 				imprimir();
 				printf("¿Cuál clave quieres modificar?\n");
 				clave=verfClav();
-				printf("\nDame la nueva clave\n");
-				scanf("%d",&ncla);
-				while (ncla>10000||ncla<0){
-						printf("Clave no válida.Intente de nuevo\n");										
-						printf("\nDame la nueva clave\n");
-						scanf("%d",&ncla);
-					}
-				
+				printf("\nDame la nueva clave. Recuerda utilizar números positivos de hasta 4 dígitos\n");
+				ncla=noRCla();		
 				for (i=0;i<z;i++){
 					if(clave==vcla[i])	{
 						vcla[i]=ncla;
@@ -461,12 +453,7 @@ void modificar(){
 				printf("¿Cuál nombre quieres modificar? Recuerde de poner todo el nombre en mayúsculas y sin acentos\n");
 				p=verfNom();
 				printf("\nDame el nuevo nombre\n");
-				scanf("%[^\n]%*c", nnom);
-				for (i=0;i<z;i++){
-					if(strcmp(nomcom[i],nomcom[p])==0)	{
-						strcpy(nomcom[i],nnom);
-					}
-				}
+				noRNom(p, tpf);
 				imprimir();			
 				printf("\n Presione cualquier tecla para regresar al menu anterior\n");
 				getchar();
@@ -480,6 +467,12 @@ void modificar(){
 				sal=verfSal();
 				printf("\nDame el nuevo salario\nEn caso de agregar decimales usar coma(,)\n");
 				scanf("%f",&nsal);
+					while (nsal<0){
+						printf("Salario no válido.Intente de nuevo\n");										
+						printf("\nIngrese el salario del nuevo trabajador\n");
+						scanf("%f",&nsal);
+					}
+				
 				for (i=0;i<z;i++){
 					if(vsal[i]==sal)
 					{
@@ -504,45 +497,23 @@ void modificar(){
 }
 
 void imprimir(){
-	int y=4,x=1;
-		printf("\tClave \t\tNombre del trabajador\t\t\tSalario");
+		printf("\tClave \t\tNombre del trabajador\t\tSalario\n ");
 				for(i=0; i<z; i++)
 			{
 				strupr(nomcom[i]);
 				if (vcla[i]<10){
-					gotoxy(2,y);
-					printf("\t000%d\n",vcla[i]);
-					gotoxy(24,y);
-					printf("%s\n",nomcom[i]);
-					gotoxy(64,y);
-					printf("%.2f\n",vsal[i]);
-					
+					printf("\t000%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);
 				}
 					else if (vcla[i]<100){
-					gotoxy(2,y);
-					printf("\t00%d\n",vcla[i]);
-					gotoxy(24,y);
-					printf("%s\n",nomcom[i]);
-					gotoxy(64,y);
-					printf("%.2f\n",vsal[i]);
+					printf("\t00%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);
 				}
 					else if (vcla[i]<1000){
-					gotoxy(2,y);
-					printf("\t0%d\n",vcla[i]);
-					gotoxy(24,y);
-					printf("%s\n",nomcom[i]);
-					gotoxy(64,y);
-					printf("%.2f\n",vsal[i]);
+					printf("\t0%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);
 				}
 				else {
-					gotoxy(2,y);
-					printf("\t%d\n",vcla[i]);
-					gotoxy(24,y);
-					printf("%s\n",nomcom[i]);
-					gotoxy(64,y);
-					printf("%.2f\n",vsal[i]);	
+					printf("\t%d\t\t%s\t\t%.2f\n", vcla[i], nomcom[i], vsal[i]);	
 				}
-				y++;
+				
 			}
 		printf("\n");
 }
@@ -567,6 +538,30 @@ int verfClav(){
 			}
 }
 
+int noRCla(){
+	int b=0, yes=0;
+	for(;;){
+	yes=0;
+	scanf("%d",&b);
+		while (b>10000||b<0){
+					printf("Clave no válida. Intente de nuevo\n");										
+					printf("Introduce la clave del trabajador. Recuerde de usar números positivos de hasta 4 cifras\n");
+					scanf("%d",&b);
+					}
+			for (i=0;i<z;i++){
+			if (b==vcla[i]){
+				yes=1;		
+			} 
+		}
+		if(yes==1){
+			printf("\nEsa clave ya se encuentra en el registro, favor de introducir una clave diferente\n");	
+			printf("Introduce la clave del trabajador\n");
+		} else{
+				return(b);
+				break;
+				}
+			}		
+}
 	
 int verfNom(){
 	int w=0, yes=0;
@@ -590,14 +585,39 @@ int verfNom(){
 				}
 			}
 }
- void gotoxy(int x,int y){  
-      HANDLE hcon;  
-      hcon = GetStdHandle(STD_OUTPUT_HANDLE);  
-      COORD dwPos;  
-      dwPos.X = x;  
-      dwPos.Y= y;  
-      SetConsoleCursorPosition(hcon,dwPos);  
- }  
+
+void noRNom(int va, int fu){ 
+	int yes=0;
+	char nRn[50];
+		scanf("%[^\n]%*c", nRn);	
+	for(;;){
+		yes=0;
+		for (i=0;i<z;i++){
+			if (strcmp(nomcom[i],nRn)==0){
+			yes=1;		
+			} 
+		}
+		if(yes==1){
+			printf("\nEse nombre ya se encuentra en el registro, favor de introducir un nombre diferente\n");
+			printf("Introduce el nombre del trabajador. Recuerde poner todo el nombre sin mayúsculas y sin acentos\n");
+			scanf("%[^\n]%*c", nRn);	
+		}	else{
+				break;
+				}
+			}
+		if(fu==4) { //la variable fu identifica la función de la que proviene la llamada a noRNom. Si viene de la función 4, insertará un nuevo nombre. Si viene de la función 6, modificará un nombre.
+				strcpy(nomcom[va], nRn);
+				return;
+			}
+		else if (fu==6) {
+					for (i=0;i<z;i++){
+					if(strcmp(nomcom[i],nomcom[va])==0)	{
+						strcpy(nomcom[i],nRn);
+					}
+				}
+		}
+}
+
 float verfSal(){
 	int yes=0;
 	float v=0;
