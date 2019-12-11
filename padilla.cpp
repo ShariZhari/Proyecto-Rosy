@@ -14,7 +14,7 @@ void oct();
 void may();
 void matrixtl();
 void menu();
-void lpro();
+void pred();
 void gotoxy(int x,int y);
 int main()
 {	
@@ -89,13 +89,14 @@ int main()
 		
 		case 3: {
 			printf("\n  -Lógica de proposiciones\n\n ");
-			lpro();
+		
 			menu();	
 		break; 
 		}
 		
 		case 4: {
-			printf("\n  -Lógica de predicados\n\n ");				
+			printf("\n  -Lógica de predicados\n\n ");	
+			pred();			
 			menu();
 		break; 
 		}
@@ -140,48 +141,351 @@ int main()
       dwPos.Y= y;  
       SetConsoleCursorPosition(hcon,dwPos);  
  }  
-void lpro(){
-	int o,i,j;
-	do {
-		printf("Elige una de las siguientes opciones:\n");
-		printf("1.Conjuncion\n");
-		printf("2.Disyunción\n");
-		printf("3.Condicional\n");
-		printf("4.Bicondicional\n");
-		printf("5.Regresar al menú anterior\n");
-		scanf("%d",&o);
+void pred(){
+		char a[]="perros",b[]="tigres",c[]="leones",d[]="Todos los",e[]="Algunos",f[]="Ninguno de los",g[]="tienen garras",h[]="tienen gran estatura",j[]="tienen pelaje",op[3],gr[20],el[20],cu[20],gr2[20],el2[20],com[50],y[3][3],x[2],z[2],o[2];
+	do{
+	int i=0;
+	printf("Elige uno de los siguientes grupos de animales\n");
+	printf("1.%s\n",a);
+	printf("2.%s\n",b);
+	printf("3.%s\n",c);
+	printf("Ingrese sólo un número\n");
+	scanf("%s",&op[i]);
+	if (op[i]!='1'&&op[i]!='2'&&op[i] !='3'){
+			do {
+				printf("Error\nIntente de nuevo\n");
+				system("pause");
+				system("cls");
+					printf("Elige uno de los siguientes grupos de animales\n");
+					printf("1.%s\n",a);
+					printf("2.%s\n",b);
+					printf("3.%s\n",c);
+					printf("Ingrese sólo un número\n");
+					scanf("%s",&op[i]);
+				system("cls");
+				}
+				while (op[i]!='1'&&op[i]!='2'&&op[i]!='3');
+	}
+	
+	system("cls");
+	printf("¿Cuántos elementos del grupo se tomarán?\n");
+	printf("1.Todos\n");
+	printf("2.Algunos\n");
+	printf("3.Ninguno\n");
+	printf("Ingrese sólo un número\n");
+	scanf("%s",&y[i]);
+		if (strcmp(y[i],"1")!=0&&strcmp(y[i],"2")!=0&&strcmp(y[i],"3")!=0){
+			do {
+				printf("Error\nIntente de nuevo\n");
+				system("pause");
+				system("cls");
+				printf("¿Cuántos elementos del grupo se tomarán?\n");
+				printf("1.Todos\n");
+				printf("2.Algunos\n");
+				printf("3.Ninguno\n");
+				printf("Ingrese sólo un número\n");
+				scanf("%s",&y[i]);
+				system("cls");
+				}
+				while (strcmp(y[i],"1")!=0&&strcmp(y[i],"2")!=0&&strcmp(y[i],"3")!=0);
+	}
+	system("cls");
+	printf("¿Deseas añadir otro grupo?\n");
+	printf("1.Sí\n2.No\n");
+	printf("Ingrese sólo un número\n");
+	scanf("%s",&x);
+	if(x[0]!='1'&&x[0]!='2'){
+		do {
+			printf("Error\nIntente de nuevo\n");
+			system("pause");
+			system("cls");
+			printf("¿Deseas añadir otro grupo?\n");
+			printf("1.Sí\n2.No\n");
+			printf("Ingrese sólo un número\n");		
+			scanf("%s",&x);
+			}
+		while (x[0]!='1'&&x[0]!='2');
+	}
+	system("cls");
+	switch (x[0]){
+		case '1':{
+			i++;
+			if (op[0]=='1'){
+				printf("Elige uno de los siguientes grupos de animales\n");
+				printf("2.%s\n",b);
+				printf("3.%s\n",c);
+				printf("Ingrese sólo un número\n");
+				scanf("%s",&op[i]);
+				if (op[i]!='2'&&op[i] !='3'){
+			do {
+				printf("Error\nIntente de nuevo\n");
+				system("pause");
+				system("cls");
+					printf("Elige uno de los siguientes grupos de animales\n");
+					printf("2.%s\n",b);
+					printf("3.%s\n",c);
+					printf("Ingrese sólo un número\n");
+					scanf("%s",&op[i]);
+				system("cls");
+				}
+				while (op[i]!='2'&&op[i]!='3');
+	}
+				system("cls");
+			printf("¿Cuántos elementos del grupo se tomarán?\n");
+	printf("1.Todos\n");
+	printf("2.Algunos\n");
+	printf("3.Ninguno\n");
+	printf("Ingrese sólo un número\n");
+	scanf("%s",&y[i]);
+		if (strcmp(y[i],"1")!=0&&strcmp(y[i],"2")!=0&&strcmp(y[i],"3")!=0){
+			do {
+				printf("Error\nIntente de nuevo\n");
+				system("pause");
+				system("cls");
+				printf("¿Cuántos elementos del grupo se tomarán?\n");
+				printf("1.Todos\n");
+				printf("2.Algunos\n");
+				printf("3.Ninguno\n");
+				printf("Ingrese sólo un número\n");
+				scanf("%s",&y[i]);
+				system("cls");
+				}
+				while (strcmp(y[i],"1")!=0&&strcmp(y[i],"2")!=0&&strcmp(y[i],"3")!=0);
+	}
+				system("cls");
+		
+				
+			}
+			else if (op[0]=='2'){
+			printf("Elige uno de los siguientes grupos de animales\n");
+			printf("1.%s\n",a);
+			printf("3.%s\n",c);
+			printf("Ingrese sólo un número\n");
+			scanf("%s",&op[i]);
+			if (op[i]!='1'&&op[i] !='3'){
+			do {
+				printf("Error\nIntente de nuevo\n");
+				system("pause");
+				system("cls");
+					printf("Elige uno de los siguientes grupos de animales\n");
+					printf("1.%s\n",a);
+					printf("3.%s\n",c);
+					printf("Ingrese sólo un número\n");
+					scanf("%s",&op[i]);
+				system("cls");
+				}
+				while (op[i]!='1'&&op[i]!='3');
+	}
+			system("cls");
+		printf("¿Cuántos elementos del grupo se tomarán?\n");
+	printf("1.Todos\n");
+	printf("2.Algunos\n");
+	printf("3.Ninguno\n");
+	printf("Ingrese sólo un número\n");
+	scanf("%s",&y[i]);
+		if (strcmp(y[i],"1")!=0&&strcmp(y[i],"2")!=0&&strcmp(y[i],"3")!=0){
+			do {
+				printf("Error\nIntente de nuevo\n");
+				system("pause");
+				system("cls");
+				printf("¿Cuántos elementos del grupo se tomarán?\n");
+				printf("1.Todos\n");
+				printf("2.Algunos\n");
+				printf("3.Ninguno\n");
+				printf("Ingrese sólo un número\n");
+				scanf("%s",&y[i]);
+				system("cls");
+				}
+				while (strcmp(y[i],"1")!=0&&strcmp(y[i],"2")!=0&&strcmp(y[i],"3")!=0);
+	}
+			system("cls");
+				
+			}
+		  else if (op[0]=='3'){
+			printf("Elige uno de los siguientes grupos de animales\n");
+			printf("1.%s\n",a);
+			printf("2.%s\n",b);
+			printf("Ingrese sólo un número\n");
+			scanf("%s",&op[i]);
+			system("cls");
+			if (op[i]!='1'&&op[i]!='2'){
+			do {
+				printf("Error\nIntente de nuevo\n");
+				system("pause");
+				system("cls");
+					printf("Elige uno de los siguientes grupos de animales\n");
+					printf("1.%s\n",a);
+					printf("2.%s\n",b);
+					printf("Ingrese sólo un número\n");
+					scanf("%s",&op[i]);
+				system("cls");
+				}
+				while (op[i]!='1'&&op[i]!='2');
+		}
 		system("cls");
-		switch(o){
-			case 1:{
-				printf("Conjunción\n\n");
-				printf("Sean:\n");
-				printf("p=Está lloviendo\n");
-				printf("q=Hace calor\n");
-				printf("r=p^q\n");
-				printf("r=Está lloviendo y hace calor\n");
-				printf("\nLa tabla de verdad es:\n");
-				gotoxy(1,10);
-				printf("p\tq\tr");
-				gotoxy(1,12);
-				printf("1\t1\t1");
-				gotoxy(1,14);
-				printf("1\t0\t0");
-				gotoxy(1,16);
-				printf("0\t1\t0");
-				gotoxy(1,18);
-				printf("0\t0\t0");
-				menu();
-				break;
-			}
-			case 2:{
+	printf("¿Cuántos elementos del grupo se tomarán?\n");
+	printf("1.Todos\n");
+	printf("2.Algunos\n");
+	printf("3.Ninguno\n");
+	printf("Ingrese sólo un número\n");
+	scanf("%s",&y[i]);
+		if (strcmp(y[i],"1")!=0&&strcmp(y[i],"2")!=0&&strcmp(y[i],"3")!=0){
+			do {
+				printf("Error\nIntente de nuevo\n");
+				system("pause");
+				system("cls");
+				printf("¿Cuántos elementos del grupo se tomarán?\n");
+				printf("1.Todos\n");
+				printf("2.Algunos\n");
+				printf("3.Ninguno\n");
+				printf("Ingrese sólo un número\n");
+				scanf("%s",&y[i]);
+				system("cls");
+				}
+				while (strcmp(y[i],"1")!=0&&strcmp(y[i],"2")!=0&&strcmp(y[i],"3")!=0);
+	}
+			system("cls");
 				
-				break;
 			}
-				
+			else {
+			
+			}
+			break;
 		}
 	}
-	while(o!=5);
 	
+	printf("Elige una cualidad\n");
+	printf("1.Tienen garras\n");
+	printf("2.Tienen gran estatura\n");
+	printf("3.Tienen pelaje\n");
+	printf("Ingrese sólo un número\n");
+	scanf("%s",&z);
+	if(z[0]!='1'&&z[0]!='2'&&z[0]!='3'){
+		do{
+			printf("Error\nIntente de nuevo\n");
+		system("pause");
+		system("cls");
+			printf("Elige una cualidad\n");
+	printf("1.Tienen garras\n");
+	printf("2.Tienen gran estatura\n");
+	printf("3.Tienen pelaje\n");
+	printf("Ingrese sólo un número\n");
+	scanf("%s",&z);
+		}
+		while (z[0]!='1'&&z[0]!='2'&&z[0]!='3');
+		
+	}
+	switch(op[0]){
+		case '1':
+			{
+			strcpy(gr,a);
+				break;
+			}
+		case '2':{
+			strcpy(gr,b);
+			break;
+		}
+		case '3':
+			{
+			strcpy(gr,c);
+			break;
+			}
+	}
+	switch(y[0][0]){
+		case '1':{
+			strcpy(el,d);
+			break;
+		}
+		case '2':{
+			strcpy(el,e);
+			break;
+		}
+		case '3':{
+			strcpy(el,f);
+			break;
+		}
+	}
+	switch(z[0]){
+		case '1':{
+			strcpy(cu,g);
+			break;
+		}
+		case '2':{
+			strcpy(cu,h);
+			break;
+		}
+		case '3':{
+			strcpy(cu,j);
+			break;
+		}
+	}
+		switch(op[1]){
+		case '1':
+			{
+			strcpy(gr2,a);
+				break;
+			}
+		case '2':{
+			strcpy(gr2,b);
+			break;
+		}
+		case '3':
+			{
+			strcpy(gr2,c);
+			break;
+			}
+	}
+	switch(y[1][0]){
+		case '1':{
+			strcpy(el2,d);
+			break;
+		}
+		case '2':{
+			strcpy(el2,e);
+			break;
+		}
+		case '3':{
+			strcpy(el2,f);
+			break;
+		}
+	}
+	
+	if (x[0]=='2'){
+		system("cls");
+		printf("Oración:\n");
+		sprintf(com,"%s %s %s\n",el,gr,cu);
+		printf(com);
+	}
+	else if (x[0]=='1'){
+		system("cls");
+		strlwr(el2);
+		printf("Oración:\n");
+		sprintf(com,"%s %s y %s %s %s\n",el,gr,el2,gr2,cu);
+		printf(com);
+	}
+system("pause");
+system("cls");
+printf("¿Desea realizar otro ejercicio?\n1.Sí\n2.No\n");
+printf("Ingrese sólo un número\n");
+scanf("%s",&o);
+if (o[0]=='1'){
+	system("cls");
+}
+if (o[0]=='2'){
+	system("cls");
+}
+if (o[0]!='1'&&o[0]!='2'){
+	do {
+		printf("Error\nIntente de nuevo\n");
+		printf("¿Desea realizar otro ejercicio?\n");
+		scanf("%s",&o);
+		system("cls");
+
+}
+while(o[0]!='1'&&o[0]!='2');
+}
+}
+while (o[0]!='2');
 }
 
 void bin() {
