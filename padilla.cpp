@@ -28,9 +28,7 @@ int main()
 	printf(" 2: Matrices de aydacencia e incidencia.\n ");
 	printf(" 3: Lógica de proposiciones.\n ");
 	printf(" 4: Lógica de predicados.\n ");
-	printf(" 5: \n ");
-	printf(" 6: \n ");
-	printf(" 7: Salir\n  ");
+	printf(" 5: Salir\n  ");
 	scanf("%d", &op);
 	system("cls");
 	
@@ -102,25 +100,11 @@ int main()
 		}
 		
 		case 5: {
-			printf("\n  - \n\n ");	
-			menu();
-		break; 
-		}
-		
-		case 6: {
-				
-			printf("\n  - \n\n ");	
-			menu();			
-		break; 
-		}
-		
-		case 7:{
 			printf("\n  -Salir\n\n");
 			men=2;
 			printf("\n Gracias, hasta pronto\n");
-		break;
+		break; 
 		}
-		
 		
 		default: {
 			printf("\n Numero incorrecto, intente nuevamente\n");
